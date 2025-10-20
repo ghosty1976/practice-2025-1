@@ -1,0 +1,96 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #2b2b2b; /* Тёмно-серый фон */
+  color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+}
+
+/* Шапка */
+header {
+  background-color: #000000; /* Чёрный фон */
+  color: #ffffff;
+  padding: 20px 40px;
+}
+
+header h1 {
+  margin: 0 0 10px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #00ffff;
+  text-decoration: underline;
+}
+
+/* Основная часть */
+main {
+  background-color: #3a3a3a; /* Более светлый тёмно-серый */
+  padding: 30px 40px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Заголовки */
+h2 {
+  color: #00ffff;
+  border-bottom: 2px solid #555;
+  padding-bottom: 5px;
+  margin-top: 0;
+}
+
+/* Списки */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* Статьи */
+article {
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #555;
+}
+
+/* Ссылки */
+a {
+  color: #00ffff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #0a9396;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #94d2bd;
+  color: #003030;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
