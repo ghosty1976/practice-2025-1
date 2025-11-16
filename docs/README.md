@@ -30,20 +30,21 @@
 
 1. Начало работы бота, введение основных функций
 
+```python
 import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 
- # Настройка логирования
+# Настройка логирования
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
- # Токен бота
+# Токен бота
 BOT_TOKEN = "8543437954:AAFXlKNJxOrK36WAgVd8uoXOJu2x4sBPba0"
 
- # Команда /start
+# Команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     welcome_text = """
 🧮 Привет! Я бот-калькулятор!
@@ -60,7 +61,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """
     await update.message.reply_text(welcome_text)
 
- # Команда /help
+# Команда /help
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = """
 📚 Доступные операции:
@@ -74,3 +75,62 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 Пример: (10 + 5) * 2 / 3
     """
     await update.message.reply_text(help_text)
+```
+
+2. Обработка математических выражений.
+
+```python
+async def calculate(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_message = update.message.text.strip()
+
+    try:
+        # Безопасное вычисление выражения
+        result = eval(user_message, {"__builtins__": {}}, {})
+
+        # Форматируем результат
+        if isinstance(result, (int, float)):
+            if result == int(result):
+                result = int(result)
+
+            await update.message.reply_text(
+                f"✅ Результат: {result}\n"
+                f"Выражение: {user_message} = {result}"
+            )
+        else:
+            await update.message.reply_text("❌ Я могу вычислять только числа!")
+
+    except ZeroDivisionError:
+        await update.message.reply_text("❌ Ошибка: Деление на ноль!")
+    except SyntaxError:
+        await update.message.reply_text("❌ Ошибка: Неправильный синтаксис!")
+    except NameError:
+        await update.message.reply_text("❌ Ошибка: Используй только числа и математические операторы!")
+    except Exception as e:
+        await update.message.reply_text(f"❌ Ошибка: {str(e)}")
+```
+
+3. Команда /start
+
+<img width="800" height="331" alt="image" src="https://github.com/user-attachments/assets/0adb3a71-4312-49dc-a9bc-f27ebf0f14e7" />
+
+4. Команда /help
+
+<img width="840" height="284" alt="image" src="https://github.com/user-attachments/assets/9a3c8eef-0701-4777-a5a2-a93767b85f5d" />
+
+5. Ввод математического выражения и его правильный ответ
+
+<img width="905" height="134" alt="image" src="https://github.com/user-attachments/assets/bed1f76d-4feb-4e6a-9a3c-671fcff11b1c" />
+
+6. Демонстрация неправильного ввода
+
+<img width="848" height="128" alt="image" src="https://github.com/user-attachments/assets/491154b7-58f4-4c0d-b4ca-c1130a4c951c" />
+
+## Заключение
+
+Это руководство охватывает ключевые аспекты создания чат-бота в telegram на Python. Для дальнейшего развития проекта стоит рассмотреть:
+
+1. История вычислений.
+2. Конвертер величин (длина, вес, валюта)
+
+
+
